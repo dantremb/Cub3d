@@ -1,0 +1,102 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube_3d_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/22 11:43:17 by nadesjar          #+#    #+#             */
+/*   Updated: 2023/01/01 00:18:14 by dantremb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes_bonus/cube3d_bonus.h"
+
+void	ft_clean_map(int fd)
+{
+	char	*tmp;
+	int		fdsave;
+
+	fdsave = ft_open_fd("tmp.cub", 2);
+	if (!fdsave)
+		return ;
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		if (tmp[0] != '\n' && !ft_is_only(tmp, ' ', ft_strlen(tmp) - 2))
+			ft_putstr_fd(tmp, fdsave);
+		free(tmp);
+		tmp = get_next_line(fd);
+	}
+	close(fdsave);
+}
+
+void	ft_split_map_suite(t_game *game, int fd)
+{
+	char	*tmp;
+
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		if (tmp[0] != '\n' && !ft_is_only(tmp, ' ', ft_strlen(tmp) - 2))
+			ft_load_texture(game, ft_trim_token(tmp, ' '));
+		free(tmp);
+		if (game->imgs.texture_n.name && game->imgs.texture_s.name
+			&& game->imgs.texture_w.name && game->imgs.texture_e.name
+			&& game->imgs.down.name && game->imgs.top.name)
+			break ;
+		tmp = get_next_line(fd);
+	}
+}
+
+void	ft_split_map(t_game *game, char *name)
+{
+	int	fd;
+
+	if (check_name(name) == 0)
+	{
+		printf("Error, Invalid files <name>.cub\n");
+		exit(0);
+	}
+	fd = ft_open_fd(name, 1);
+	if (!fd)
+	{
+		printf("error, wrong open for <name>.ber\n");
+		exit(0);
+	}
+	ft_split_map_suite(game, fd);
+	ft_clean_map(fd);
+	close(fd);
+}
+
+void	*ft_run_mlx(void *arg)
+{
+	t_game	*game;
+
+	game = arg;
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, game->w, game->h, "BANKAI");
+	ft_init_imgs(game);
+	printf("tes9t\n");m
+	game->player = ft_init_player(game);
+	mlx_hook(game->win, 17, 0, x_quit, game);
+	mlx_loop_hook(game->mlx, ft_routine, game);
+	mlx_hook(game->win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->win, 3, 1L << 1, key_release, game);
+	mlx_hook(game->win, 6, 1L << 6, mouse_move, game);
+	mlx_mouse_hook(game->win, ft_shoot, game);
+	mlx_loop(game->mlx);
+	return (NULL);
+}
+
+int	main(int entry, char **name)
+{
+	t_game	game;
+
+	ft_memset(&game, 0, sizeof(t_game));
+	ft_split_map(&game, name[1]);
+	check_entry(&game, entry, "tmp.cub");
+	init_vars(&game);
+	ft_run_mlx(&game);
+	return (0);
+}
