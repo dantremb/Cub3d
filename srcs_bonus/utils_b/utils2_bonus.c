@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2_b.c                                         :+:      :+:    :+:   */
+/*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadesjar <dracken24@gmail.com>             +#+  +:+       +#+        */
+/*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:59:59 by nadesjar          #+#    #+#             */
-/*   Updated: 2022/12/13 11:46:16 by nadesjar         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:08:38 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,11 @@ void	ft_music(t_game *game)
 		game->mus_ct = 23;
 		system("afplay ./music/blade.mp3 &");
 	}
+}
+
+void	ft_replace_or_load(char **texture, char *temp)
+{
+	if (*texture)
+		ft_free(*texture);
+	*texture = ft_strdup(ft_trim_token(temp, ' '));
 }

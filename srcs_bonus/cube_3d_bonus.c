@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 11:43:17 by nadesjar          #+#    #+#             */
-/*   Updated: 2023/01/04 15:31:32 by dantremb         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:17:24 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,15 @@ int	main(int entry, char **name)
 {
 	t_game	game;
 
-	ft_memset(&game, 0, sizeof(t_game));
-	ft_split_map(&game, name[1]);
-	check_entry(&game, entry, "tmp.cub");
-	init_vars(&game);
-	ft_run_mlx(&game);
+	if (entry == 2)
+	{
+		ft_memset(&game, 0, sizeof(t_game));
+		ft_split_map(&game, name[1]);
+		check_entry(&game, entry, "tmp.cub");
+		init_vars(&game);
+		ft_run_mlx(&game);
+	}
+	else
+		printf("Please enter a valid map name.\n");
 	return (0);
 }

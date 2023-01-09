@@ -6,7 +6,7 @@
 #    By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/19 16:09:57 by nadesjar          #+#    #+#              #
-#    Updated: 2022/12/19 14:55:35 by dantremb         ###   ########.fr        #
+#    Updated: 2023/01/08 19:13:45 by dantremb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,8 @@ NAME_B			= cub3D_bonus
 all: signature $(LIBS) $(NAME)
 
 $(NAME): msg_in $(OBJS) msg_out
-	@cp $(MLX_LIB_MAC) $(NAME)
-	@gcc $(OBJS) $(MLX_LIB_MAC) $(LIBFT_A) $(MLXFLAG_MAC) -o $(NAME)
+	@cp $(MLX_LIB_LINUX) $(NAME)
+	@gcc $(OBJS) $(MLX_LIB_LINUX) $(LIBFT_A) $(MLXFLAG_LINUX) -o $(NAME)
 # @./$(NAME) ./maps/test_mandatory.cub
 
 $(PATH_OBJS)%.o:	$(PATH_SRCS)%.c
@@ -107,8 +107,8 @@ $(PATH_OBJS)%.o:	$(PATH_SRCS)%.c
 bonus: $(NAME_B)
 
 $(NAME_B): msg_in $(OBJS_B) msg_out
-	@cp $(MLX_LIB_MAC) $(NAME_B)
-	@gcc $(OBJS_B) $(MLX_LIB_MAC) $(LIBFT_A) $(MLXFLAG_MAC) -o $(NAME_B)
+	@cp $(MLX_LIB_LINUX) $(NAME_B)
+	@gcc $(OBJS_B) $(MLX_LIB_LINUX) $(LIBFT_A) $(MLXFLAG_LINUX) -o $(NAME_B)
 # @./$(NAME_B) ./maps/test.cub
 
 $(PATH_OBJS_B)%.o:	$(PATH_SRCS_B)%.c
@@ -127,7 +127,7 @@ $(PATH_OBJS_B)%.o:	$(PATH_SRCS_B)%.c
 	@printf "$G■"
 
 make_lib:
-	@$(MAKE) -C ./srcs/libft
+	@$(MAKE) -s -C ./srcs/libft
 
 msg_in:
 	@echo $L"COMPILATION DE Cub_3D EN COURS..."$W

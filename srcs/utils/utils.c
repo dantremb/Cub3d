@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadesjar <dracken24@gmail.com>             +#+  +:+       +#+        */
+/*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 11:43:17 by nadesjar          #+#    #+#             */
-/*   Updated: 2022/11/01 18:50:38 by nadesjar         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:50:48 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,12 @@ int	ft_charcmp(unsigned char a, unsigned char b)
 	if (a == b)
 		return (true);
 	return (false);
+}
+
+
+void	ft_replace_or_load(char **texture, char *temp)
+{
+	if (*texture)
+		ft_free(*texture);
+	*texture = ft_strdup(ft_trim_token(temp, ' '));
 }

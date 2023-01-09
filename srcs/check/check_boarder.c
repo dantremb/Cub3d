@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 23:03:48 by nadesjar          #+#    #+#             */
-/*   Updated: 2023/01/04 17:07:10 by dantremb         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:49:39 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ void	check_char(t_game *game)
 void	ft_load_texture(t_game *game, char *temp)
 {
 	if (ft_strncmp(temp, "NO", 2) == 0)
-		game->imgs.texture_n.name = ft_strdup(ft_trim_token(temp + 2, ' '));
+		ft_replace_or_load(&game->imgs.texture_n.name, temp + 2);
 	else if (ft_strncmp(temp, "SO", 2) == 0)
-		game->imgs.texture_s.name = ft_strdup(ft_trim_token(temp + 2, ' '));
+		ft_replace_or_load(&game->imgs.texture_s.name, temp + 2);
 	else if (ft_strncmp(temp, "WE", 2) == 0)
-		game->imgs.texture_w.name = ft_strdup(ft_trim_token(temp + 2, ' '));
+		ft_replace_or_load(&game->imgs.texture_w.name, temp + 2);
 	else if (ft_strncmp(temp, "EA", 2) == 0)
-		game->imgs.texture_e.name = ft_strdup(ft_trim_token(temp + 2, ' '));
+		ft_replace_or_load(&game->imgs.texture_e.name, temp + 2);
 	else if (ft_strncmp(temp, "F", 1) == 0)
-		game->imgs.down.name = ft_strdup(ft_trim_token(temp + 1, ' '));
+		ft_replace_or_load(&game->imgs.down.name, temp + 1);
 	else if (ft_strncmp(temp, "C", 1) == 0)
-		game->imgs.top.name = ft_strdup(ft_trim_token(temp + 1, ' '));
+		ft_replace_or_load(&game->imgs.top.name, temp + 1);
 }

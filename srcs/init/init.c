@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadesjar <dracken24@gmail.com>             +#+  +:+       +#+        */
+/*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 11:43:17 by nadesjar          #+#    #+#             */
-/*   Updated: 2023/01/04 12:17:09 by nadesjar         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:01:52 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,18 @@ void	init_vars(t_game *game)
 void	ft_init_imgs(t_game *game)
 {
 	ft_init_colors(game, &game->imgs.texture_n, 1);
+	printf("Nord : %s\n", game->imgs.texture_n.name);
 	ft_init_colors(game, &game->imgs.texture_s, 1);
+	printf("Sud : %s\n", game->imgs.texture_s.name);
 	ft_init_colors(game, &game->imgs.texture_e, 1);
+	printf("Est : %s\n", game->imgs.texture_e.name);
 	ft_init_colors(game, &game->imgs.texture_w, 1);
+	printf("Ouest : %s\n", game->imgs.texture_w.name);
 	ft_init_floor_top(game, &game->imgs.top);
+	printf("top = %s\n", game->imgs.top.name);
 	ft_init_floor_top(game, &game->imgs.down);
+	printf("down = %s\n", game->imgs.down.name);
+	printf("im i stuck here !!!!!\n");
 	game->imgs.img.img = mlx_new_image(game->mlx, game->w, game->h);
 	game->imgs.img.name = mlx_get_data_addr(game->imgs.img.img,
 			&game->bpp, &game->pixel, &game->endian);

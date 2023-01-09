@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadesjar <dracken24@gmail.com>             +#+  +:+       +#+        */
+/*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 11:44:15 by nadesjar          #+#    #+#             */
-/*   Updated: 2023/01/04 12:09:38 by nadesjar         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:50:56 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int		check_name(char *name);
 
 int		ft_charcmp(unsigned char a, unsigned char b);
 int		ft_convert_bits(t_byte *raw);
+void	ft_replace_or_load(char **texture, char *temp);
 
 /**************************** Init game ****************************/
 

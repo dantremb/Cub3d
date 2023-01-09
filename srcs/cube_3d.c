@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 11:43:17 by nadesjar          #+#    #+#             */
-/*   Updated: 2023/01/04 16:45:30 by dantremb         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:04:31 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_clean_map(int fd)
 	if (fdsave < 0)
 		return ;
 	tmp = get_next_line(fd);
-	while (tmp && tmp[0] == '\n' || ft_is_only(tmp, ' ', ft_strlen(tmp) - 2))
+	while (tmp && (tmp[0] == '\n' || ft_is_only(tmp, ' ', ft_strlen(tmp) - 2)))
 	{
 		ft_free(tmp);
 		tmp = get_next_line(fd);
@@ -103,10 +103,15 @@ int	main(int entry, char **name)
 {
 	t_game	game;
 
-	ft_memset(&game, 0, sizeof(t_game));
-	ft_split_map(&game, name[1]);
-	check_entry(&game, entry, "tmp.cub");
-	init_vars(&game);
-	ft_run_mlx(&game);
+	if (entry == 2)
+	{
+		ft_memset(&game, 0, sizeof(t_game));
+		ft_split_map(&game, name[1]);
+		check_entry(&game, entry, "tmp.cub");
+		init_vars(&game);
+		ft_run_mlx(&game);
+	}
+	else
+		printf("Please enter a valid map name.\n");
 	return (0);
 }
