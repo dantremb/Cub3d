@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 11:43:17 by nadesjar          #+#    #+#             */
-/*   Updated: 2023/01/08 20:11:53 by dantremb         ###   ########.fr       */
+/*   Updated: 2023/01/09 07:52:38 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	mouse_move(int x, int y, t_game *game)
 	int	xx;
 	int	i;
 
-	//mlx_mouse_hide();
+	mlx_mouse_hide();
 	i = 0;
 	xx = x - game->last.x;
 	if (xx < 0)
