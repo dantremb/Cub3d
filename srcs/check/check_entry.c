@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_entry.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadesjar <dracken24@gmail.com>             +#+  +:+       +#+        */
+/*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 19:49:33 by nadesjar          #+#    #+#             */
-/*   Updated: 2023/01/04 13:58:40 by nadesjar         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:28:39 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ int	check_name(char *name)
 	return (1);
 }
 
+bool	ft_valid_map(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if (!ft_strchr("01NSEW ", line[i]))
+		{
+			printf("Error, invalid letter in map.\n");
+			return (true);
+		}
+	}
+	return (false);
+}
+
+
 void	map_read(t_game *game, char *name)
 {
 	int	fd;
@@ -54,6 +71,8 @@ void	map_read(t_game *game, char *name)
 	while (++game->ct.i >= 0)
 	{
 		game->tmp[game->ct.i] = get_next_line(fd);
+		if (ft_valid_map(game->tmp[game->ct.i]))
+			x_quit(game);
 		if (!game->tmp[game->ct.i])
 			break ;
 	}
